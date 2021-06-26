@@ -7,7 +7,10 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "clean-ios": "rm -rf ios/build && rm -rf ~/Library/Developer/Xcode/DerivedData && rm -rf ./ios/DerivedData",
+    "clean-pods": "cd ios/ && rm -rf Pods && pod install && cd ../",
+    "postinstall": "npx jetify && (cd ios && pod install && cd ..)"
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.11",
