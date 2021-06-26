@@ -4,8 +4,11 @@
     - This Pokemon needs to be saved to the device during this function.
 - Create a new screen in the navigation stack for a detailed view of a single Pokemon.
   - You will navigate to this screen by tapping a Pokemon in the Home ScrollView.
-  - Display the Pokemon's image full width across the top of the screen with no header from React Navigation.
+  - Display the Pokemon's image full width across the top of the screen with a height of 300.
   - Have the name below the image.
-  - Display any special abilities below if present.
+  - Display any special abilities below if present in the Pokemon.
+    - Name
+    - Type
+    - Power
   - Create a button that calls your "save" function made earlier.
   - Add a "*" next to the Pokemon's name if it has been saved as the favorite.
