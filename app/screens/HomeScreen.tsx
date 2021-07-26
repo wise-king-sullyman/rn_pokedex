@@ -5,6 +5,7 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { PokemonListItem } from '../components/PokemonListItem';
 import { fetchPokemons } from '../services/pokemonService';
 
+import Bar from '../components/Bar';
 type Props = {};
 
 export const HomeScreen: React.FC<Props> = () => {
@@ -28,6 +29,7 @@ export const HomeScreen: React.FC<Props> = () => {
 
   return (
     <View style={styles.container}>
+        <Bar text={`Pokemon Count: ${pokemonsData.length}`} />
       {!loading ? (
         <FlatList
           keyExtractor={item => item.id}
