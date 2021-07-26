@@ -6,6 +6,8 @@ import { PokemonListItem } from '../components/PokemonListItem';
 import { fetchPokemons } from '../services/pokemonService';
 
 import Bar from '../components/Bar';
+import PokeProvider from '../components/PokeContext';
+
 type Props = {};
 
 export const HomeScreen: React.FC<Props> = () => {
@@ -28,20 +30,22 @@ export const HomeScreen: React.FC<Props> = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <PokeProvider>
+      <View style={styles.container}>
         <Bar text={`Pokemon Count: ${pokemonsData.length}`} />
-      {!loading ? (
-        <FlatList
-          keyExtractor={item => item.id}
-          data={pokemonsData}
-          renderItem={renderItem}
-        />
-      ) : (
-        <View style={styles.loading}>
-          <Text>Loading...</Text>
-        </View>
-      )}
-    </View>
+        {!loading ? (
+          <FlatList
+            keyExtractor={item => item.id}
+            data={pokemonsData}
+            renderItem={renderItem}
+          />
+        ) : (
+          <View style={styles.loading}>
+            <Text>Loading...</Text>
+          </View>
+        )}
+      </View>
+    </PokeProvider>
   );
 };
 
