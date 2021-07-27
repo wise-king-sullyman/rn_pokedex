@@ -10,7 +10,7 @@ import PokeProvider from '../components/PokeContext';
 
 type Props = {};
 
-export const HomeScreen: React.FC<Props> = () => {
+export const HomeScreen: React.FC<Props> = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   const [pokemonsData, setPokemonsData] = useState<PokemonData[]>([]);
 
@@ -26,7 +26,7 @@ export const HomeScreen: React.FC<Props> = () => {
   }, []);
 
   const renderItem = ({ item }: { item: PokemonData }) => {
-    return <PokemonListItem pokemonData={item} />;
+    return <PokemonListItem pokemonData={item} navigation={navigation} />;
   };
 
   return (

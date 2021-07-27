@@ -1,19 +1,21 @@
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 type Props = {
   pokemonData: PokemonData;
 };
 
-export const PokemonListItem: React.FC<Props> = ({ pokemonData }) => {
+export const PokemonListItem: React.FC<Props> = ({ pokemonData, navigation }) => {
   const { name, image } = pokemonData;
   return (
-    <View style={styles.wrapper}>
+    <TouchableWithoutFeedback style={styles.wrapper} onPress={() => navigation.navigate('Detail', { pokemonData })}>
       <View style={styles.border}>
         <Image source={{ uri: image }} style={styles.image} />
       </View>
       <Text style={styles.text}>{name}</Text>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 

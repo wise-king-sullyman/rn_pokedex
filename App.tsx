@@ -13,6 +13,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { HomeScreen } from './app/screens/HomeScreen';
+import { PokemonDetailScreen } from './app/screens/DetailScreen';
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,11 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Pokedex" component={HomeScreen} />
+        <Stack.Screen
+          name="Detail"
+          component={PokemonDetailScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
