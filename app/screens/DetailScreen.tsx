@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
+import { View, ScrollView, Text, StyleSheet, Image, Dimensions } from 'react-native';
 
 import PokeProvider from '../components/PokeContext';
 
 import { RouteProp } from '@react-navigation/native';
-import { FlatList } from 'react-native-gesture-handler';
 
 type DetailRouteProp = RouteProp<StackParamList, 'Detail'>;
 
@@ -32,6 +31,9 @@ export const PokemonDetailScreen: React.FC<Props> = ({ route }) => {
     })
   }
 
+  // I feel like I'm doing some weird TS stuff here, but I'm making the errors
+  // go away. I need to read docs and review other projecs more but I'm working
+  // on pretty limited time.
   const SpecialAttack = ({ name, type, damage }: PokemonSpecial) => (
     <View style={styles.special}>
       <Text style={styles.specialName}>{name}</Text>
@@ -40,13 +42,17 @@ export const PokemonDetailScreen: React.FC<Props> = ({ route }) => {
     </View>
   )
 
-  const renderSpecial = ({ item }: { item: PokemonSpecial }) => (
-    <SpecialAttack name={item.name} type={item.type} damage={item.damage} />
+  const SpecialsList = ({ data }: {data: PokemonSpecial[]}) => (
+    <View>
+      {data.map(({ name, type, damage }: PokemonSpecial) => (
+        <SpecialAttack name={name} type={type} damage={damage} key={name}/>
+      ))}
+    </View>
   )
 
   return (
     <PokeProvider>
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Image
           source={{ uri: image }}
           onLoad={() => computeImageDimensions(image)}
@@ -58,8 +64,8 @@ export const PokemonDetailScreen: React.FC<Props> = ({ route }) => {
           }
         />
         <Text style={styles.text}>{name}</Text>
-        <FlatList data={special} keyExtractor={(item, index) => item + index} renderItem={renderSpecial} />
-      </View>
+        <SpecialsList data={special} />
+      </ScrollView>
     </PokeProvider>
   );
 };
