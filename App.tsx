@@ -14,21 +14,24 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { HomeScreen } from './app/screens/HomeScreen';
 import { PokemonDetailScreen } from './app/screens/DetailScreen';
+import PokeProvider from './app/components/PokeContext';
 
 const Stack = createStackNavigator<StackParamList>();
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Pokedex" component={HomeScreen} />
-        <Stack.Screen
-          name="Detail"
-          component={PokemonDetailScreen}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <PokeProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Pokedex" component={HomeScreen} />
+          <Stack.Screen
+            name="Detail"
+            component={PokemonDetailScreen}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </PokeProvider>
   );
 };
 

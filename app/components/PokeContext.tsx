@@ -7,7 +7,7 @@ type PokeContextType = { savePokemon: (pokemon: PokemonData) => void, favPokemon
 
 const initialContext: PokeContextType = { savePokemon: () => { }, favPokemon: null }
 
-const PokeContext: Context<PokeContextType> = React.createContext(initialContext)
+export const PokeContext: Context<PokeContextType> = React.createContext(initialContext)
 
 const PokeProvider: React.FC<{}> = ({ children }) => {
   const [favPokemon, setFavePokemon] = useState<PokemonData | null>(null)
@@ -21,6 +21,8 @@ const PokeProvider: React.FC<{}> = ({ children }) => {
     }
 
     setFavePokemon(pokemon);
+
+    console.log(`fav pokemon is ${favPokemon}`)
   }
 
   return (

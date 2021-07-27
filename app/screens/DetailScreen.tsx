@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { ScrollView, Text, StyleSheet, Image, Dimensions } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
 
-import PokeProvider from '../components/PokeContext';
+import { PokeContext } from '../components/PokeContext';
 import SpecialsList from '../components/SpecialsList';
+import { useContext } from 'react';
 
 type DetailRouteProp = RouteProp<StackParamList, 'Detail'>;
 

@@ -6,7 +6,6 @@ import { PokemonListItem } from '../components/PokemonListItem';
 import { fetchPokemons } from '../services/pokemonService';
 
 import Bar from '../components/Bar';
-import PokeProvider from '../components/PokeContext';
 
 import { StackNavigationProp } from '@react-navigation/stack';
 
@@ -39,22 +38,20 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
   };
 
   return (
-    <PokeProvider>
-      <View style={styles.container}>
-        <Bar text={`Pokemon Count: ${pokemonsData.length}`} />
-        {!loading ? (
-          <FlatList
-            keyExtractor={item => item.id}
-            data={pokemonsData}
-            renderItem={renderItem}
-          />
-        ) : (
-          <View style={styles.loading}>
-            <Text>Loading...</Text>
-          </View>
-        )}
-      </View>
-    </PokeProvider>
+    <View style={styles.container}>
+      <Bar text={`Pokemon Count: ${pokemonsData.length}`} />
+      {!loading ? (
+        <FlatList
+          keyExtractor={item => item.id}
+          data={pokemonsData}
+          renderItem={renderItem}
+        />
+      ) : (
+        <View style={styles.loading}>
+          <Text>Loading...</Text>
+        </View>
+      )}
+    </View>
   );
 };
 
