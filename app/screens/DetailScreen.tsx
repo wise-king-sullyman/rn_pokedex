@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, Text, StyleSheet, Image, Dimensions } from 'react-native';
+import { ScrollView, Text, StyleSheet, Image, Dimensions, Button } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
 
 import { PokeContext } from '../components/PokeContext';
@@ -15,6 +15,8 @@ type Props = {
 export const PokemonDetailScreen: React.FC<Props> = ({ route }) => {
   const { pokemonData } = route.params
   const { name, image, attacks: { special } } = pokemonData;
+
+  const { favPokemon, savePokemon } = useContext(PokeContext)
 
 
   // I wasn't sure if "Display the Pokemon's image full width" in the stories
@@ -33,22 +35,26 @@ export const PokemonDetailScreen: React.FC<Props> = ({ route }) => {
   }
 
   return (
-    <PokeProvider>
-      <ScrollView style={styles.container}>
-        <Image
-          source={{ uri: image }}
-          onLoad={() => computeImageDimensions(image)}
-          style={
-            {
-              width: imageDimensions.width,
-              height: imageDimensions.height,
-            }
+    <ScrollView style={styles.container}>
+      <Image
+        source={{ uri: image }}
+        onLoad={() => computeImageDimensions(image)}
+        style={
+          {
+            width: imageDimensions.width,
+            height: imageDimensions.height,
           }
-        />
-        <Text style={styles.text}>{name}</Text>
-        <SpecialsList data={special} />
-      </ScrollView>
-    </PokeProvider>
+        }
+      />
+      <Text style={styles.text}>
+        {Object.is(favPokemon, pokemonData) ? '*' : ''}{name}
+      </Text>
+      <SpecialsList data={special} />
+      <Button
+        onPress={() => savePokemon(pokemonData)}
+        title="Save as favorite"
+      />
+    </ScrollView>
   );
 };
 
