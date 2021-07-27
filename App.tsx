@@ -15,7 +15,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen } from './app/screens/HomeScreen';
 import { PokemonDetailScreen } from './app/screens/DetailScreen';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<StackParamList>();
 
 const App = () => {
   return (

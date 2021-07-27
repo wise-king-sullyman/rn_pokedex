@@ -3,7 +3,13 @@ import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
 
 import PokeProvider from '../components/PokeContext';
 
-type Props = {};
+import { RouteProp } from '@react-navigation/native';
+
+type DetailRouteProp = RouteProp<StackParamList, 'Detail'>;
+
+type Props = {
+  route: DetailRouteProp
+};
 
 export const PokemonDetailScreen: React.FC<Props> = ({ route }) => {
   const { pokemonData } = route.params
@@ -15,9 +21,9 @@ export const PokemonDetailScreen: React.FC<Props> = ({ route }) => {
 
   // I elected to go with the full width of the screen and compute the image
   // height to maintain it's aspect ratio.
-  const [imageDimensions, setImageDimensions] = useState({})
+  const [imageDimensions, setImageDimensions] = useState({ width: 0, height: 0})
 
-  const computeImageDimensions = (image) => {
+  const computeImageDimensions = (image: string) => {
     const windowWidth = Dimensions.get('window').width;
     Image.getSize(image, (width, height) => {
       const scaleFactor = windowWidth / width

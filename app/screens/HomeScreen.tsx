@@ -8,7 +8,16 @@ import { fetchPokemons } from '../services/pokemonService';
 import Bar from '../components/Bar';
 import PokeProvider from '../components/PokeContext';
 
-type Props = {};
+import { StackNavigationProp } from '@react-navigation/stack';
+
+type PokedexNavigationProp = StackNavigationProp<
+  StackParamList,
+  'Pokedex'
+>;
+
+type Props = {
+  navigation: PokedexNavigationProp;
+};
 
 export const HomeScreen: React.FC<Props> = ({ navigation }) => {
   const [loading, setLoading] = useState(false);

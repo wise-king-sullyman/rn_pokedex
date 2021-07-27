@@ -12,3 +12,9 @@ interface PokemonData {
     }>;
   };
 }
+
+type StackParamList = {
+  Pokedex: undefined;
+  Detail: { pokemonData: PokemonData};
+}
+

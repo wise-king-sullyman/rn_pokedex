@@ -3,8 +3,16 @@ import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
+import { StackNavigationProp } from '@react-navigation/stack';
+
+type PokedexNavigationProp = StackNavigationProp<
+  StackParamList,
+  'Pokedex'
+>;
+
 type Props = {
   pokemonData: PokemonData;
+  navigation: PokedexNavigationProp;
 };
 
 export const PokemonListItem: React.FC<Props> = ({ pokemonData, navigation }) => {
