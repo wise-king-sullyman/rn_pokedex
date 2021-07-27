@@ -13,6 +13,12 @@ interface PokemonData {
   };
 }
 
+interface PokemonSpecial {
+  name: string;
+  type: string;
+  damage: number;
+}
+
 type StackParamList = {
   Pokedex: undefined;
   Detail: { pokemonData: PokemonData};
